@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>LogViewer example</title>
+  </head>
+  <body>
+    <div id="logViewer"></div>
+
+    <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript">
+      startLogViewer(document.getElementById('logViewer'), {
+        fetchOptions: {
+          example: {
+            label: 'Example Logs',
+            options: {
+              name: {
+                placeholder: 'Type some name here',
+                validate: /[a-z]*/
+              }
+            },
+            fetch: function (options) {
+              return [
+                { message: options.name + ': some line', timestamp: Date.now() - 100, tags: { 'A': true, 'B': true }},
+                { message: options.name + ': some other line', timestamp: Date.now() - 10, tags: { 'A': true, 'C': true }},
+                { message: options.name + ': some other line2', timestamp: Date.now() - 9, tags: { 'C': true, 'B': true }},
+              ]
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
